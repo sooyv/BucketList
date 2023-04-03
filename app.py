@@ -30,13 +30,11 @@ def bucket_post():
     db.bucket.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
-
 @app.route("/bucket/done", methods=["POST"])
 def bucket_done():
     num_receive = request.form["num_give"]
     db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 1}})
     return jsonify({'msg': '버킷 완료!'})
-
 
 @app.route("/bucket", methods=["GET"])
 def bucket_get():
